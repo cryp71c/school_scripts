@@ -11,9 +11,9 @@
 
 # Color Variables 
 # https://dev.to/ifenna__/adding-colors-to-bash-scripts-48g4
-Red=$'\e[1;31m'
-Green=$'\e[1;32m'
-Blue=$'\e[1;34m'
+RED=$'\e[1;31m'
+GREEN=$'\e[1;32m'
+BLUE=$'\e[1;34m'
 PURPLE=$'\e[1;35m'
 WHITE=$'\e[0;97m'
 CYAN=$'\e[0;36m'
@@ -23,15 +23,15 @@ BROWN=$'\e[0;33m'
 # the user knows the script is running properly.
 function on_run_print(){ 
     echo -e "[${CYAN}*${WHITE}] Welcome to odd ping sweep!" 
-    echo -e "[${CYAN}*${WHITE}] This tool pings all the odd-numbered ip addresses, and exports the results to ping.txt"
-    echo -e "[${Red}!${WHITE}] WARNING: This tool is reccomended only for /24 or smaller networks."
+    echo -e "[${CYAN}*${WHITE}] This tool pings all the odd-numbeRED ip addresses, and exports the results to ping.txt"
+    echo -e "[${RED}!${WHITE}] WARNING: This tool is reccomended only for /24 or smaller networks."
     return
 }
 
 # This function does a for loop through .1-.255 (all valid in /24 and smaller networks)
 function get_odd_ips(){
-    echo -e "[${Green}+${WHITE}] Proceeding with $1 as the base IP" # telling the user proceding with the base IP
-    echo -e "[${Green}+${WHITE}] Path to ping.txt : ${2}ping.txt" # telling the user the path to ping.txt
+    echo -e "[${GREEN}+${WHITE}] Proceeding with $1 as the base IP" # telling the user proceding with the base IP
+    echo -e "[${GREEN}+${WHITE}] Path to ping.txt : ${2}ping.txt" # telling the user the path to ping.txt
     local base=$1  # setting local variable for base ip
     local pth="${2}ping.txt" # setting path for ping.txt
     local hup=() # array for hosts thaat are up
@@ -51,10 +51,10 @@ function get_odd_ips(){
 
         if [ $? == 0 ] # if the status code of the ping == 0 (getting a reply) tell the user
         then
-            echo -e "[${Green}+${WHITE}] Host up: ${PURPLE}$1$i${WHITE}"
+            echo -e "[${GREEN}+${WHITE}] Host up: ${PURPLE}$1$i${WHITE}"
             hup+=("$1$i")
         else # if any other status assume host down
-            echo -e "[${Red}!${WHITE}] Host down: ${Red}$1$i${WHITE}"
+            echo -e "[${RED}!${WHITE}] Host down: ${RED}$1$i${WHITE}"
             hdn+=("$1$i")
         fi
     done
